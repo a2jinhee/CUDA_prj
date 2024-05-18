@@ -20,17 +20,16 @@ __global__ void convolution(Matrix N, Matrix P)
     }
     __syncthreads();
 
-    if (ty < TILE_SIZE && tx < TILE_SIZE){
+    if (ty < TILE_SIZE && tx < TILE_SIZE ){
         for (int i=0; i<FILTER_SIZE; i++){
             for (int j=0; j<FILTER_SIZE; j++){
                 output += Mc[i][j] * N_ds[i+ty][j+tx];
             }
-        }
-        __syncthreads();
+        } 
         if (row_o<P.height && col_o<P.width){
             P.elements[row_o*P.width+col_o]=output; 
         }
     }
 
-
 }
+

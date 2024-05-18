@@ -71,8 +71,8 @@ int main(int argc, char* argv[])
 
     /* Copy image to device global memory */
     //INSERT CODE HERE
-    cudaMemcpy(N_d.elements, N_h.elements, imageHeight*imageHeight*sizeof(float), cudaMemcpyHostToDevice);
-    cudaMemcpy(P_d.elements, P_h.elements, imageHeight*imageHeight*sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(N_d.elements, N_h.elements, imageHeight*imageWidth*sizeof(float), cudaMemcpyHostToDevice);
+    cudaMemcpy(P_d.elements, P_h.elements, imageHeight*imageWidth*sizeof(float), cudaMemcpyHostToDevice);
 
     /* Copy mask to device constant memory */
     //INSERT CODE HERE
@@ -108,14 +108,14 @@ int main(int argc, char* argv[])
 
     // Print -----------------------------------------------------------------
     // Print N_d
-    printf("\nContents of N_h (input image):\n");
-    printMatrix(N_h);
+    // printf("\nContents of N_h (input image):\n");
+    // printMatrix(N_h);
     // Print Mc
-    printf("\nContents of Mc (filter):\n");
-    printMatrix(M_h);
+    // printf("\nContents of Mc (filter):\n");
+    // printMatrix(M_h);
     // Print P_d
-    printf("\nContents of P_h (output image):\n");
-    printMatrix(P_h);
+    // printf("\nContents of P_h (output image):\n");
+    // printMatrix(P_h);
 
     // Verify correctness -----------------------------------------------------
 
