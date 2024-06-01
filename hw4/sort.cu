@@ -61,7 +61,7 @@ __global__ void gpuscan_prefix(int* Count)
     int stride = 1; 
     while (stride < BLOCK_SIZE) {
         int index = (tid + 1) * stride * 2 - 1;
-        if (index < BLOCK_SIZE) {
+        if (index < (MAX_VALUE+1)) {
             count[index] += count[index - stride];
         }
         stride *= 2;
@@ -71,7 +71,7 @@ __global__ void gpuscan_prefix(int* Count)
     int stride2 = BLOCK_SIZE / 2;
     while (stride2 > 0) {
         int index = (tid + 1) * stride2 * 2 - 1;
-        if (index < BLOCK_SIZE && (index + stride2) < BLOCK_SIZE) {
+        if (index < (MAX_VALUE + 1) && (index + stride2) < (MAX_VALUE + 1)) {
             count[index + stride2] += count[index];
         }
         stride2 /= 2;
